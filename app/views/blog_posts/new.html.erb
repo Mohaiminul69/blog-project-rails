@@ -1,0 +1,12 @@
+
+<h1>Create New Blog</h1>
+
+<% if @post.errors.any? %>
+    <% @post.errors.full_messages.each do |message| %>
+        <p><%= message %></p>
+    <% end %>
+<% end %>
+
+<%= render partial: 'form', locals: {post: @post} %>
+
+<%= link_to 'back', root_path %>

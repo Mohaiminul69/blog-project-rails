@@ -1,0 +1,25 @@
+<div class="max-w-2xl mx-auto bg-white p-6 rounded-lg shadow-md">
+  <h1 class="text-3xl font-bold text-gray-900 mb-4">Edit Blog</h1>
+
+  <!-- Error Messages -->
+  <% if @post.errors.any? %>
+    <div class="mb-4 p-4 bg-red-100 border-l-4 border-red-500 text-red-700 rounded">
+      <% @post.errors.full_messages.each do |message| %>
+        <p class="text-sm"><%= message %></p>
+      <% end %>
+    </div>
+  <% end %>
+
+  <!-- Form Partial -->
+  <%= render partial: "form", locals: {post: @post} %>
+
+  <!-- Delete Button -->
+  <div class="mt-4">
+    <%= button_to 'Delete', @post, method: :delete, data: {turbo_confirm: "Are you sure?" }, class: "bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 w-full text-center font-semibold" %>
+  </div>
+
+  <!-- Back Link -->
+  <div class="mt-4">
+    <%= link_to 'Back', root_path, class: "inline-block bg-gray-600 text-white px-4 py-2 rounded hover:bg-gray-700" %>
+  </div>
+</div>
