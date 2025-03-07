@@ -9,5 +9,10 @@
 #   end
 
 
-user = User.where(email: 'mohaiminul.islam.shishir@gmail.com').first_or_initialize
-user.update!(password: 'asd123', password_confirmation: "asd123")
+# user = User.where(email: 'mohaiminul.islam.shishir@gmail.com').first_or_initialize
+# user.update!(password: 'asd123', password_confirmation: "asd123")
+
+100.times do |i|
+    blog_post = BlogPost.where(title: "Blog Post  #{i}").first_or_initialize
+    blog_post.update(content: "hello world", published_at: Time.current)
+end

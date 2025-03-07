@@ -3,7 +3,10 @@ class BlogPostsController < ApplicationController
     before_action :set_blog_post, except: [:index, :new, :create] # only: [:show, :edit :update :destroy]
 
     def index
-        @posts = user_signed_in? ? BlogPost.sorted : BlogPost.sorted
+        @posts = user_signed_in? ? BlogPost.sorted : BlogPost.published.sorted
+        @pagy, @posts = pagy(@posts)
+    rescue Pagy::OverflowError
+        redirect_to root_path(page: 1)
     end
 
     def show
